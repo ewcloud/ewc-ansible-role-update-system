@@ -1,0 +1,5 @@
+---
+- name: Update System
+  block:
+    - name: Update Operating System
+      ansible.builtin.include_tasks: update-{{ ansible_distribution | lower }}.yml

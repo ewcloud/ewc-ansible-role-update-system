@@ -1,0 +1,36 @@
+---
+- name: Update System - Rocky
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    exclude:
+      - mars-client
+      - mars-client-cloud
+    update_cache: true
+
+- name: Update Mars Client
+  ansible.builtin.dnf:
+    name:
+      - mars-client
+      - mars-client-cloud
+    sslverify: false
+    update_only: true
+    state: latest
+
+- name: Install basic admin tools
+  ansible.builtin.dnf:
+    name: yum-utils
+    state: latest
+
+- name: Check if reboot is required after update
+  ansible.builtin.command:
+    cmd: "needs-restarting -r"
+  changed_when: false
+  failed_when: reboot_required.rc != 0 and reboot_required.rc != 1
+  check_mode: false
+  register: reboot_required
+  when: reboot_if_required
+
+- name: Reboot after update
+  ansible.builtin.reboot:
+  when: reboot_if_required and reboot_required.rc == 1
