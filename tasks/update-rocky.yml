@@ -13,7 +13,7 @@
     name:
       - mars-client
       - mars-client-cloud
-    sslverify: false
+    disable_gpg_check: true
     update_only: true
     state: latest
 
