@@ -2,7 +2,7 @@
 - name: Update System - Rocky
   ansible.builtin.dnf:
     name: "*"
-    state: latest
+    state: latest # noqa package-latest
     exclude:
       - mars-client
       - mars-client-cloud
@@ -15,12 +15,12 @@
       - mars-client-cloud
     disable_gpg_check: true
     update_only: true
-    state: latest
+    state: latest # noqa package-latest
 
 - name: Install basic admin tools
   ansible.builtin.dnf:
     name: yum-utils
-    state: latest
+    state: latest # noqa package-latest
 
 - name: Check if reboot is required after update
   ansible.builtin.command:

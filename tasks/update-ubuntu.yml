@@ -10,7 +10,7 @@
 - name: Update System - Ubuntu
   ansible.builtin.apt:
     name: "*"
-    state: latest
+    state: latest # noqa package-latest
     autoremove: true
     update_cache: true
 

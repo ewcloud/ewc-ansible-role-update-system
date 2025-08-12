@@ -4,6 +4,6 @@ galaxy_info:
   description: Simple role to update Rocky or Ubuntu
   company: ECMWF
   license: Apache 2.0
-  min_ansible_version: 2.1
+  min_ansible_version: "2.1"
   galaxy_tags: []
 dependencies: []
